@@ -11,16 +11,13 @@ generaDNI(): genera un número aleatorio de 8 cifras.*/
 
 class Persona{
 
-    constructor(nombre, edad, DNI, sexo,peso,altura,añoNacimiento){
+    constructor(nombre,  sexo,peso,altura,añoNacimiento){
         this.nombre=nombre;
-        this.edad=edad;
-        this.DNI=DNI;
         this.sexo=sexo;
         this.peso=peso;
         this.altura=altura;
         this.añoNacimiento=añoNacimiento;
     }
-   
 
     mostarGeneracion(){
         if(this.añoNacimiento>=1994 && this.añoNacimiento<=2010){
@@ -57,9 +54,9 @@ class Persona{
     }
     MayorEdad()
     {
-    let mayor=this.añoNacimiento-2010;
-    console.log(mayor);
-    if(mayor>=18){
+    let edad=this.añoNacimiento-2010;
+    
+    if(edad>=18){
 
         document.write(`${this.nombre} es mayor de edad `);
     }else 
@@ -67,12 +64,21 @@ class Persona{
         document.write(`${this.nombre} es menor de edad `);
     }
     }
+    edad(){
+       let edad=this.añoNacimiento-2010;
+       return edad;
+    }
+    GenerarDni(){
+
+        let dni= Math.floor(Math.random()*(99999999-10000000)+10000000);
+        return dni;
+    }
     MostraDato()
     {
         document.write(`<p>Nombre : ${this.nombre} </p>`);
        
         document.write(`<p>Edad : ${this.edad} </p>`);
-        document.write(`<p>DNI : ${ this.DNI} </p>`);
+        document.write(`<p>DNI : ${ this.GenerarDni} </p>`);
         document.write(`<p>Sexo : ${this.sexo} </p>`);
         document.write(`<p>Peso : ${this.peso} </p>`);
         document.write(`<p>Altura : ${this.altura} </p>`);
@@ -81,7 +87,14 @@ class Persona{
 
 }
 
-let PersonaNuevo = new Persona("Yessica", 20, 4256315, "Femenimo",58,156,1933);
+let sexo = parseInt(prompt("ingrese su sexo 1-femenino 2-masculino"));
+if(sexo===1){
+    sexo="femenino";
+}else if(sexo===2){
+sexo="masculino";
+}
+
+let PersonaNuevo = new Persona("Yessica", sexo,58,156,1933);
 
 PersonaNuevo.mostarGeneracion();
 document.write("<hr>");
